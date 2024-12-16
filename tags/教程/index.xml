@@ -25,6 +25,12 @@
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>git submodule add --depth&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#ae81ff">1&lt;/span> https://github.com/adityatelange/hugo-PaperMod.git themes/PaperMod
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>git submodule update --init --recursive &lt;span style="color:#75715e"># needed when you reclone your repo (submodules may not get cloned automatically)&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="3-编辑配置文件hugoyaml">3. 编辑配置文件hugo.yaml&lt;/h2>
+&lt;div class="collapse-wrapper">
+&lt;button class="collapse-button" onclick="this.parentElement.classList.toggle('active')">
+点击展开
+&lt;span class="collapse-icon">▼&lt;/span>
+&lt;/button>
+&lt;div class="collapse-content">
 &lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-shell" data-lang="shell">&lt;span style="display:flex;">&lt;span>baseURL: https://username.github.io/
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>languageCode: en-us
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>title: My Blog
@@ -111,5 +117,8 @@
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> goldmark:
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> renderer:
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> unsafe: true
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="4-配置search和archieve功能">4. 配置Search和Archieve功能&lt;/h2>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;/div>
+&lt;/div>
+&lt;h2 id="4-配置search和archieve功能">4. 配置Search和Archieve功能&lt;/h2>
 &lt;p>Search功能，创建&lt;code>content/search.md&lt;/code>:&lt;/p></description></item></channel></rss>
