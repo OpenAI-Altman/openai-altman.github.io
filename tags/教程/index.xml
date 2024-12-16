@@ -2,15 +2,15 @@
 &lt;p>本教程将详细说明如何通过Github Pages + Hugo + Cloudflare从零到一构建一个免费的静态博客站，在网络中拥有自己的一亩三分地。&lt;/p>
 &lt;h1 id="基本原理">基本原理&lt;/h1>
 &lt;ul>
-&lt;li>&lt;a href="gohugo.io">&lt;code>Hugo&lt;/code>&lt;/a>是Go语言实现的静态页面生成工具，用于将&lt;code>.md&lt;/code>格式的文档源文件转换为浏览器可以渲染的&lt;code>.html&lt;/code>文件。&lt;/li>
+&lt;li>&lt;a href="https://gohugo.io">&lt;code>Hugo&lt;/code>&lt;/a>是Go语言实现的静态页面生成工具，用于将&lt;code>.md&lt;/code>格式的文档源文件转换为浏览器可以渲染的&lt;code>.html&lt;/code>文件。&lt;/li>
 &lt;li>&lt;code>Github Pages&lt;/code>托管&lt;code>.html&lt;/code>文章，可以通过&lt;code>username.github.io&lt;/code>访问博客。&lt;/li>
 &lt;li>&lt;code>Cloudflare&lt;/code>用于提供反向代理，完成自定义域名到&lt;code>username.github.io&lt;/code>的映射，从而隐藏&lt;code>github io&lt;/code>域名。此外也提供免费的&lt;code>HTTPS&lt;/code>证书和&lt;code>HTTP&lt;/code>重定向服务，保证安全访问。&lt;/li>
 &lt;/ul>
 &lt;h1 id="准备">准备&lt;/h1>
 &lt;ol>
 &lt;li>准备2个&lt;code>Github&lt;/code>空仓库，一个设置为&lt;strong>Public&lt;/strong>，一个设置为&lt;strong>Private&lt;/strong>。其中公开的仓库用于存储静态页面，私有仓库用于存储外部不可见的源文件。公开的仓库命名必须为&lt;code>username.github.io&lt;/code>，其中&lt;code>username&lt;/code>是你的&lt;code>Github&lt;/code>用户名。&lt;/li>
-&lt;li>这一条不是必须的。如果你想自定义域名，可以去域名商平台挑选购买自己喜欢的域名，作者本人是在&lt;a href="www.spaceship.com">Spaceship&lt;/a>选购的域名，年费不超过10元，很便宜。&lt;/li>
-&lt;li>下载并安装&lt;code>Hugo&lt;/code>，可以参考&lt;a href="gohugo.io/installation/">Hugo官方的安装教程&lt;/a>。&lt;/li>
+&lt;li>这一条不是必须的。如果你想自定义域名，可以去域名商平台挑选购买自己喜欢的域名，作者本人是在&lt;a href="https://www.spaceship.com">Spaceship&lt;/a>选购的域名，年费不超过10元，很便宜。&lt;/li>
+&lt;li>下载并安装&lt;code>Hugo&lt;/code>，可以参考&lt;a href="https://gohugo.io/installation/">Hugo官方的安装教程&lt;/a>。&lt;/li>
 &lt;/ol>
 &lt;h1 id="搭建步骤">搭建步骤&lt;/h1>
 &lt;h2 id="1-创建新的hugo站点">1. 创建新的Hugo站点&lt;/h2>
