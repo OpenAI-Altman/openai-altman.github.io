@@ -6,4 +6,110 @@
 &lt;li>&lt;code>Github Pages&lt;/code>托管&lt;code>.html&lt;/code>文章，可以通过&lt;code>username.github.io&lt;/code>访问博客。&lt;/li>
 &lt;li>&lt;code>Cloudflare&lt;/code>用于提供反向代理，完成自定义域名到&lt;code>username.github.io&lt;/code>的映射，从而隐藏&lt;code>github io&lt;/code>域名。此外也提供免费的&lt;code>HTTPS&lt;/code>证书和&lt;code>HTTP&lt;/code>重定向服务，保证安全访问。&lt;/li>
 &lt;/ul>
-&lt;h1 id="准备">准备&lt;/h1></description></item></channel></rss>
+&lt;h1 id="准备">准备&lt;/h1>
+&lt;ol>
+&lt;li>准备2个&lt;code>Github&lt;/code>空仓库，一个设置为&lt;strong>Public&lt;/strong>，一个设置为&lt;strong>Private&lt;/strong>。其中公开的仓库用于存储静态页面，私有仓库用于存储外部不可见的源文件。公开的仓库命名必须为&lt;code>username.github.io&lt;/code>，其中&lt;code>username&lt;/code>是你的&lt;code>Github&lt;/code>用户名。&lt;/li>
+&lt;li>这一条不是必须的。如果你想自定义域名，可以去域名商平台挑选购买自己喜欢的域名，作者本人是在&lt;a href="www.spaceship.com">Spaceship&lt;/a>选购的域名，年费不超过10元，很便宜。&lt;/li>
+&lt;li>下载并安装&lt;code>Hugo&lt;/code>，可以参考&lt;a href="gohugo.io/installation/">Hugo官方的安装教程&lt;/a>。&lt;/li>
+&lt;/ol>
+&lt;h1 id="搭建步骤">搭建步骤&lt;/h1>
+&lt;h2 id="1-创建新的hugo站点">1. 创建新的Hugo站点&lt;/h2>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-shell" data-lang="shell">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"># --format yaml指定hugo的配置文件格式为yaml&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>hugo new site /Path/to/hugo-project --format yaml
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"># 初始化hugo项目仓库&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>cd /Path/to/hugo-project
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>git init
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="2-安装主题">2. 安装主题&lt;/h2>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-shell" data-lang="shell">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"># 安装PaperMod主题，你可以替换为自己喜欢的hugo主题&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>git submodule add --depth&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#ae81ff">1&lt;/span> https://github.com/adityatelange/hugo-PaperMod.git themes/PaperMod
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>git submodule update --init --recursive &lt;span style="color:#75715e"># needed when you reclone your repo (submodules may not get cloned automatically)&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="3-编辑配置文件hugoyaml">3. 编辑配置文件hugo.yaml&lt;/h2>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-shell" data-lang="shell">&lt;span style="display:flex;">&lt;span>baseURL: https://username.github.io/
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>languageCode: en-us
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>title: My Blog
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>theme: PaperMod
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"># 基础设置&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>enableGitInfo: false
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>enableEmoji: true &lt;span style="color:#75715e"># 支持 emoji 显示&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>paginate: &lt;span style="color:#ae81ff">10&lt;/span> &lt;span style="color:#75715e"># 一页显示10篇文章&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"># params底下的应该是PaperMod的设置&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>params:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> homeInfoParams:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> Title: &lt;span style="color:#e6db74">&amp;#34;👋 Welcome to My Blog&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> Content: &lt;span style="color:#e6db74">&amp;#34;Hi, this is my blog.&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> socialIcons:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> - name: &lt;span style="color:#e6db74">&amp;#34;rss&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> url: &lt;span style="color:#e6db74">&amp;#34;/index.xml&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> - name: &lt;span style="color:#e6db74">&amp;#34;email&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> url: &lt;span style="color:#e6db74">&amp;#34;your_email@example.com&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> - name: &lt;span style="color:#e6db74">&amp;#34;github&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> url: &lt;span style="color:#e6db74">&amp;#34;https://github.com/username&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> label:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> text: &lt;span style="color:#e6db74">&amp;#34;User&amp;#39;s Blog&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> icon: /favicon.ico &lt;span style="color:#75715e"># 导航栏显示的图标&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> iconHeight: &lt;span style="color:#ae81ff">35&lt;/span> &lt;span style="color:#75715e"># 控制导航栏图标大小&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> assets:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> disableHLJS: true
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> favicon: &lt;span style="color:#e6db74">&amp;#34;/favicon.ico&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> favicon16x16: &lt;span style="color:#e6db74">&amp;#34;/favicon-16x16.png&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> favicon32x32: &lt;span style="color:#e6db74">&amp;#34;/favicon-32x32.png&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e"># apple_touch_icon: &amp;#34;/apple-touch-icon.png&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e"># android_chrome_192: &amp;#34;/android-chrome-192x192.png&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e"># android_chrome_512: &amp;#34;/android-chrome-512x512.png&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> env: production
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> defaultTheme: auto
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> disableSpecial1stPost: true
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> ShowRssButtonInSectionTermList: true
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> ShowToc: true
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e"># 文章设置&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> ShowReadingTime: false &lt;span style="color:#75715e"># 显示阅读时间&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> ShowPostNavLinks: true
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> ShowBreadCrumbs: true
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> ShowCodeCopyButtons: true
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> ShowWordCount: true &lt;span style="color:#75715e"># 显示字数统计&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> ShowAuthor: true &lt;span style="color:#75715e"># 显示作者&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>menu:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> main:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> - name: Posts
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> url: /posts/
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> weight: &lt;span style="color:#ae81ff">1&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> - name: Archive
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> url: /archive/
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> weight: &lt;span style="color:#ae81ff">2&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> - name: Search
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> url: /search/
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> weight: &lt;span style="color:#ae81ff">3&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> - name: Tags
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> url: /tags/
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> weight: &lt;span style="color:#ae81ff">4&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"># 输出设置&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>outputs:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> home:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> - HTML
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> - RSS
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> - JSON &lt;span style="color:#75715e"># 用于搜索功能&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> section:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> - HTML
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"># 文章页面设置&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>permalinks:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> posts: /posts/:year-:month-:day-:filename/
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"># Markdown 渲染设置&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>markup:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> goldmark:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> renderer:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> unsafe: true
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="4-配置search和archieve功能">4. 配置Search和Archieve功能&lt;/h2>
+&lt;p>Search功能，创建&lt;code>content/search.md&lt;/code>:&lt;/p></description></item></channel></rss>
