@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Tips on ByteBrick's Blog Site</title><link>https://openai-altman.github.io/tags/tips/</link><description>Recent content in Tips on ByteBrick's Blog Site</description><generator>Hugo -- 0.139.4</generator><language>zh-cn</language><lastBuildDate>Sat, 21 Dec 2024 23:41:01 +0800</lastBuildDate><atom:link href="https://openai-altman.github.io/tags/tips/index.xml" rel="self" type="application/rss+xml"/><item><title>【解决办法】✨💡一些小问题解决办法合集</title><link>https://openai-altman.github.io/posts/2024-12-21-4th/</link><pubDate>Sat, 21 Dec 2024 23:41:01 +0800</pubDate><guid>https://openai-altman.github.io/posts/2024-12-21-4th/</guid><description>&lt;p>&lt;strong>Q&lt;/strong>：Gihutb Permission Denied❌&lt;/p>
+&lt;p>&lt;strong>A&lt;/strong>：&lt;/p>
+&lt;ol>
+&lt;li>启动SSH代理：&lt;code>eval $(ssh-agent -s)&lt;/code>；&lt;/li>
+&lt;li>添加密钥：&lt;code>ssh-add path/to/ssh-key&lt;/code>&lt;/li>
+&lt;li>测试：&lt;code>ssh -T git@github.com&lt;/code>，看到username则成功；&lt;/li>
+&lt;/ol></description></item></channel></rss>
